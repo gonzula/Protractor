@@ -10,6 +10,7 @@
 		9F1FCE78203B65F600D4713A /* Protractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1FCE6E203B65F600D4713A /* Protractor.framework */; };
 		9F1FCE7D203B65F600D4713A /* ProtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FCE7C203B65F600D4713A /* ProtractorTests.swift */; };
 		9F1FCE7F203B65F600D4713A /* Protractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F1FCE71203B65F600D4713A /* Protractor.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9F1FCE89203B661200D4713A /* Protractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FCE88203B661100D4713A /* Protractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		9F1FCE77203B65F600D4713A /* ProtractorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProtractorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1FCE7C203B65F600D4713A /* ProtractorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtractorTests.swift; sourceTree = "<group>"; };
 		9F1FCE7E203B65F600D4713A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9F1FCE88203B661100D4713A /* Protractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 		9F1FCE70203B65F600D4713A /* Protractor */ = {
 			isa = PBXGroup;
 			children = (
+				9F1FCE88203B661100D4713A /* Protractor.swift */,
 				9F1FCE71203B65F600D4713A /* Protractor.h */,
 				9F1FCE72203B65F600D4713A /* Info.plist */,
 			);
@@ -148,6 +151,7 @@
 				TargetAttributes = {
 					9F1FCE6D203B65F600D4713A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					9F1FCE76203B65F600D4713A = {
@@ -196,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F1FCE89203B661200D4713A /* Protractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +339,7 @@
 		9F1FCE83203B65F600D4713A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -347,6 +353,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ninja.gonzo.Protractor;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -355,6 +362,7 @@
 		9F1FCE84203B65F600D4713A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -376,6 +384,7 @@
 		9F1FCE86203B65F600D4713A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6K8GZF4U9;
 				INFOPLIST_FILE = ProtractorTests/Info.plist;
@@ -390,6 +399,7 @@
 		9F1FCE87203B65F600D4713A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6K8GZF4U9;
 				INFOPLIST_FILE = ProtractorTests/Info.plist;
