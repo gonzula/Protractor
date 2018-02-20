@@ -350,7 +350,9 @@ public class Protractor: UIControl {
         let oldValue = self.value
         self.value += mult * stepValue
         if oldValue != value {
+            sendActions(for: .editingDidBegin)
             sendActions(for: .valueChanged)
+            sendActions(for: .editingDidEnd)
         }
     }
 
