@@ -50,9 +50,9 @@ extension UIImage {
 }
 
 @IBDesignable
-class Protractor: UIControl {
+public class Protractor: UIControl {
 
-    var angleRange = Double(0)...Double(180) {
+    public var angleRange = Double(0)...Double(180) {
         didSet {
             assert(angleRange.lowerBound >= 0, "angleRange.lowerBound must be >= 0")
             assert(angleRange.upperBound <= 180, "angleRange.upperBound must be <= 180")
@@ -62,20 +62,20 @@ class Protractor: UIControl {
         }
     }
 
-    var possibleValues = [Double]()
+    private var possibleValues = [Double]()
 
-    var radAngleRange: ClosedRange<CGFloat> {
+    private var radAngleRange: ClosedRange<CGFloat> {
         let lowerBound = angleRange.lowerBound - 180
         let upperBound = angleRange.upperBound - 180
         return CGFloat(lowerBound.degreesToRadians)...CGFloat(upperBound.degreesToRadians)
     }
 
-    var stepValue = Double(1) {
+    public var stepValue = Double(1) {
         didSet {
             calculatePossibleValues()
         }
     }
-    var value: Double {
+    public var value: Double {
         get {
             var angle = Double(needleAngle.radiansToDegrees + 180)
             angle = max(angleRange.lowerBound, min(angleRange.upperBound, angle))
@@ -86,6 +86,12 @@ class Protractor: UIControl {
             var value = max(angleRange.lowerBound, min(angleRange.upperBound, newValue))
             value = possibleValues.min { abs($0 - value) < abs($1 - value) }!
             needleAngle = CGFloat(value - 180).degreesToRadians
+        }
+    }
+
+    public override var tintColor: UIColor! {
+        didSet {
+            updatePlusMinusImages()
         }
     }
 
@@ -157,25 +163,25 @@ class Protractor: UIControl {
         return min(bounds.width / 2, bounds.height) * 0.9
     }
 
-    var shouldDrawLine: Bool = true {
+    public var shouldDrawLine: Bool = true {
         didSet {
             setNeedsDisplay()
         }
     }
 
-    var linesStep = CGFloat(10.degreesToRadians) {
+    public var linesStep = CGFloat(10.degreesToRadians) {
         didSet {
             setNeedsDisplay()
         }
     }
 
-    var font: UIFont = UIFont.systemFont(ofSize: 17) {
+    public var font: UIFont = UIFont.systemFont(ofSize: 17) {
         didSet {
             setNeedsDisplay()
         }
     }
 
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
 
         calculatePossibleValues()
@@ -185,11 +191,11 @@ class Protractor: UIControl {
         minusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
     }
 
-    convenience init() {
+    public convenience init() {
         self.init(frame: CGRect.zero)
     }
 
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("This class does not support NSCoding")
     }
 
@@ -293,7 +299,7 @@ class Protractor: UIControl {
         UIBezierPath(rect: CGRect(x: 0, y: 0, width: bounds.width, height: 2)).fill()
     }
 
-    override func draw(_ rect: CGRect) {
+    public override func draw(_ rect: CGRect) {
         UIColor(red: 169/255, green: 177/255, blue: 186/255, alpha: 1.0).setStroke()
 
         drawArc()
@@ -322,7 +328,7 @@ class Protractor: UIControl {
         }
     }
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
 
         let touchableRadius = CGFloat(radius * 0.8)...CGFloat(radius * 1.15)
@@ -341,7 +347,7 @@ class Protractor: UIControl {
         return distance
     }
 
-    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
 
         guard isTouching, let touch = touches.first else {
@@ -351,7 +357,7 @@ class Protractor: UIControl {
         updateTouchLocation(touch: touch)
     }
 
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
 
         isTouching = false
