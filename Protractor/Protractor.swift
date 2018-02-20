@@ -43,7 +43,9 @@ extension UIImage {
             plus.fill()
         }
 
-        return UIGraphicsGetImageFromCurrentImageContext()!
+        let img = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return img
     }
 }
 
