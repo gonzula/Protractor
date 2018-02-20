@@ -158,6 +158,7 @@ public class Protractor: UIControl {
 
     private var needleAngle = CGFloat(0) {
         didSet {
+            updatePlusMinusButtons()
             setNeedsDisplay()
         }
     }
@@ -196,6 +197,8 @@ public class Protractor: UIControl {
 
         plusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
         minusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
+
+        updatePlusMinusButtons()
     }
 
     public convenience init() {
@@ -208,6 +211,17 @@ public class Protractor: UIControl {
 
     fileprivate func calculatePossibleValues() {
         possibleValues = Array(stride(from: angleRange.lowerBound, through: angleRange.upperBound, by: stepValue))
+    }
+
+    private func updatePlusMinusButtons() {
+        guard !possibleValues.isEmpty else {
+            minusButton.isEnabled = false
+            plusButton.isEnabled = false
+            return
+        }
+
+        minusButton.isEnabled = value != possibleValues.min()!
+        plusButton.isEnabled = value != possibleValues.max()!
     }
 
     // MARK: - Draw
