@@ -100,7 +100,6 @@ public class Protractor: UIControl {
         button.tag = 1
         let size = CGSize(width: 44, height: 44)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(UIImage.plusOrMinusButton(color: tintColor, isPlus: true, size: size), for: .normal)
         addSubview(button)
 
         var constraints = [NSLayoutConstraint]()
@@ -124,7 +123,6 @@ public class Protractor: UIControl {
         button.tag = -1
         let size = CGSize(width: 44, height: 44)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setBackgroundImage(UIImage.plusOrMinusButton(color: tintColor, isPlus: false, size: size), for: .normal)
         addSubview(button)
 
         var constraints = [NSLayoutConstraint]()
@@ -199,6 +197,7 @@ public class Protractor: UIControl {
         minusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
 
         updatePlusMinusButtons()
+        updatePlusMinusImages()
     }
 
     public convenience init() {
@@ -225,6 +224,12 @@ public class Protractor: UIControl {
     }
 
     // MARK: - Draw
+
+    private func updatePlusMinusImages() {
+        let size = CGSize(width: 44, height: 44)
+        minusButton.setBackgroundImage(UIImage.plusOrMinusButton(color: tintColor, isPlus: false, size: size), for: .normal)
+        plusButton.setBackgroundImage(UIImage.plusOrMinusButton(color: tintColor, isPlus: true, size: size), for: .normal)
+    }
 
     fileprivate func drawArc() {
         let arc = UIBezierPath(arcCenter: arcCenter,
