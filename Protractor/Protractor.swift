@@ -146,6 +146,13 @@ public class Protractor: UIControl {
     private var isTouching: Bool = false {
         didSet {
             setNeedsDisplay()
+            if isTouching != oldValue {
+                if isTouching {
+                    sendActions(for: .editingDidBegin)
+                } else {
+                    sendActions(for: .editingDidEnd)
+                }
+            }
         }
     }
 
