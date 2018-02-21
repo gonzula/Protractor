@@ -396,6 +396,9 @@ public class Protractor: UIControl {
         touchLocation.y = min(arcCenter.y, touchLocation.y)
         var angle = atan2(touchLocation.y - arcCenter.y,
                           touchLocation.x - arcCenter.x)
+        if (angle > 0) {
+            angle -= CGFloat.pi * 2
+        }
         angle = max(radAngleRange.lowerBound, min(radAngleRange.upperBound, angle))
         let oldValue = value
         needleAngle = angle
