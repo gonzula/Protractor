@@ -239,13 +239,16 @@ public class Protractor: UIControl {
                                clockwise: true)
         arc.lineWidth = 1
         arc.stroke()
+
+        drawLines(angles: [radAngleRange.lowerBound, radAngleRange.upperBound])
     }
 
-    fileprivate func drawLines() {
+    fileprivate func drawLines(angles: [CGFloat]? = nil) {
         let ctx = UIGraphicsGetCurrentContext()!
         ctx.saveGState()
         ctx.translateBy(x: arcCenter.x, y: arcCenter.y)
-        for lineAngle in stride(from: radAngleRange.lowerBound, through: radAngleRange.upperBound, by: linesStep) {
+        let drawAngles = angles ?? Array(stride(from: radAngleRange.lowerBound, through: radAngleRange.upperBound, by: linesStep))
+        for lineAngle in drawAngles {
             let line = UIBezierPath()
             line.lineWidth = 1
             line.move(to: CGPoint.zero)
