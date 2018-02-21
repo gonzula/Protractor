@@ -264,6 +264,9 @@ public class Protractor: UIControl {
         ctx.translateBy(x: arcCenter.x, y: arcCenter.y)
         let dashes: [CGFloat] = [16.0, 32.0].map {$0/4}
         for lineAngle in ([45, 135].map {($0 - 180).degreesToRadians}) {
+            guard radAngleRange.contains(lineAngle) else {
+                continue
+            }
             let line = UIBezierPath()
             line.setLineDash(dashes, count: dashes.count, phase: 0)
             line.lineWidth = 1
