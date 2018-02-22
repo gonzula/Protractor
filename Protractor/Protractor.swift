@@ -291,9 +291,10 @@ public class Protractor: UIControl {
         for angle in stride(from: radAngleRange.lowerBound, through: radAngleRange.upperBound, by: linesStep) {
             let degAngle = 180 + Int(round(angle.radiansToDegrees))
             let text = "\(degAngle)°"
-            let attrText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font : font.withSize(13)])
+            let fontSize: CGFloat = 13
+            let attrText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font : font.withSize(fontSize)])
 
-            let width = NSAttributedString(string: "\(degAngle)", attributes: [NSAttributedStringKey.font : font.withSize(13)]).size().width
+            let width = NSAttributedString(string: "\(degAngle)", attributes: [NSAttributedStringKey.font : font.withSize(fontSize)]).size().width
             ctx.saveGState()
             ctx.translateBy(x: radius * 1.1 * cos(angle), y: radius * 1.1 * sin(angle))
             ctx.rotate(by: angle + CGFloat.pi/2)
