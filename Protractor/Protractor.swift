@@ -328,7 +328,7 @@ public class Protractor: UIControl {
     }
 
     fileprivate func drawValueLabel() {
-        let textRectSize = CGSize(width: 60, height: 20)
+        let textRectSize = CGSize(width: 60, height: 24)
         let textRect = CGRect(
             x: arcCenter.x - textRectSize.width/2,
             y: arcCenter.y - textRectSize.height/2,
@@ -338,6 +338,8 @@ public class Protractor: UIControl {
         rect.fill()
         rect.stroke()
 
+        let textSize = NSAttributedString(string: "\(value)",
+                                     attributes: [.font: font.withSize(17)]).size()
         let text = "\(value)°"
         let p = NSMutableParagraphStyle()
         p.alignment = .center
@@ -345,7 +347,8 @@ public class Protractor: UIControl {
                                           attributes: [.font: font.withSize(17),
                                                        .paragraphStyle: p
             ])
-        attrText.draw(in: textRect)
+        attrText.draw(at: CGPoint(x: textRect.midX - textSize.width/2,
+                                  y: textRect.midY - textSize.height/2))
     }
 
     public override func draw(_ rect: CGRect) {
