@@ -155,14 +155,15 @@ public class Protractor: UIControl {
         }
     }
 
+    private var valueTimer: Timer?
+
     public override init(frame: CGRect) {
         super.init(frame: frame)
 
         calculatePossibleValues()
         backgroundColor = UIColor(red: 207/255, green: 211/255, blue: 216/255, alpha: 1)
 
-        plusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
-        minusButton.addTarget(self, action: #selector(Protractor.buttonTouched(_:)), for: .touchUpInside)
+        addGestureRecognizers()
 
         updatePlusMinusButtons()
         updatePlusMinusImages()
@@ -199,6 +200,15 @@ public class Protractor: UIControl {
 
         return button
     }
+
+    private func addGestureRecognizers() {
+        let buttons = [plusButton, minusButton]
+        for button in buttons {
+            button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(Protractor.buttonTapped(_:))))
+            button.addGestureRecognizer(UILongPressGestureRecognizer(target: self, action: #selector(Protractor.buttonLongPressed(_:))))
+        }
+    }
+
     fileprivate func calculatePossibleValues() {
         possibleValues = stride(from: angleRange.lowerBound, through: angleRange.upperBound, by: stepValue)
     }
@@ -362,6 +372,37 @@ public class Protractor: UIControl {
     }
 
     // MARK: - User Interaction
+
+    @objc func buttonLongPressed(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .changed {
+            if valueTimer == nil {
+                valueTimer = Timer.scheduledTimer(timeInterval: 0.25/2, target: self, selector: #selector(Protractor.valueTimerFired(_:)), userInfo: sender.view?.tag, repeats: true)
+                sendActions(for: .editingDidBegin)
+                valueTimer!.fire()
+            }
+        } else if valueTimer != nil {
+            valueTimer!.invalidate()
+            valueTimer = nil
+            sendActions(for: .editingDidEnd)
+        }
+    }
+
+    @objc func valueTimerFired(_ timer: Timer) {
+        guard let mult = timer.userInfo as? Double else {
+            return
+        }
+        DispatchQueue.main.async {
+            let oldValue = self.value
+            self.value += mult * self.stepValue
+            if oldValue != self.value {
+                self.sendActions(for: .valueChanged)
+            }
+        }
+    }
+
+    @objc func buttonTapped(_ sender: UITapGestureRecognizer) {
+        buttonTouched(sender.view as! UIButton)
+    }
 
     @objc func buttonTouched(_ sender: UIButton) {
         let mult = Double(sender.tag)
