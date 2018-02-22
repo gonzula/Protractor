@@ -169,7 +169,7 @@ public class Protractor: UIControl {
         return min(bounds.width / 2, bounds.height) * 0.9
     }
 
-    public var shouldDrawLine: Bool = true {
+    public var shouldDrawSeparatorLine: Bool = true {
         didSet {
             setNeedsDisplay()
         }
@@ -327,7 +327,7 @@ public class Protractor: UIControl {
         ctx.restoreGState()
     }
 
-    fileprivate func drawLine() {
+    fileprivate func drawSeparatorLine() {
         UIBezierPath(rect: CGRect(x: 0, y: 0, width: bounds.width, height: 2)).fill()
     }
 
@@ -343,8 +343,8 @@ public class Protractor: UIControl {
         drawNeedle()
 
         UIColor(red: 180/255, green: 188/255, blue: 199/255, alpha: 1).set()
-        if shouldDrawLine {
-            drawLine()
+        if shouldDrawSeparatorLine {
+            drawSeparatorLine()
         }
     }
 
