@@ -96,49 +96,11 @@ public class Protractor: UIControl {
     }
 
     lazy private var plusButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.tag = 1
-        let size = CGSize(width: 44, height: 44)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(button)
-
-        var constraints = [NSLayoutConstraint]()
-
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "[button(width@1000)]-|",
-                                                                      options: [],
-                                                                      metrics: ["width": size.width],
-                                                                      views: ["button": button]))
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[button(height@1000)]",
-                                                                      options: [],
-                                                                      metrics: ["height": size.height],
-                                                                      views: ["button": button]))
-
-        NSLayoutConstraint.activate(constraints)
-
-        return button
+        return createButton(isPlus: true)
     }()
 
     lazy private var minusButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.tag = -1
-        let size = CGSize(width: 44, height: 44)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(button)
-
-        var constraints = [NSLayoutConstraint]()
-
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "|-[button(width@1000)]",
-                                                                      options: [],
-                                                                      metrics: ["width": size.width],
-                                                                      views: ["button": button]))
-        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[button(height@1000)]",
-                                                                      options: [],
-                                                                      metrics: ["height": size.height],
-                                                                      views: ["button": button]))
-
-        NSLayoutConstraint.activate(constraints)
-
-        return button
+        return createButton(isPlus: false)
     }()
 
     private var isTouching: Bool = false {
@@ -214,6 +176,29 @@ public class Protractor: UIControl {
         fatalError("This class does not support NSCoding")
     }
 
+    private func createButton(isPlus: Bool) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.tag = isPlus ? 1 : -1
+        let size = CGSize(width: 44, height: 44)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(button)
+
+        var constraints = [NSLayoutConstraint]()
+
+        let format = isPlus ? "[button(width@1000)]-|" : "|-[button(width@1000)]"
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: format,
+                                                                      options: [],
+                                                                      metrics: ["width": size.width],
+                                                                      views: ["button": button]))
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|-16-[button(height@1000)]",
+                                                                      options: [],
+                                                                      metrics: ["height": size.height],
+                                                                      views: ["button": button]))
+
+        NSLayoutConstraint.activate(constraints)
+
+        return button
+    }
     fileprivate func calculatePossibleValues() {
         possibleValues = stride(from: angleRange.lowerBound, through: angleRange.upperBound, by: stepValue)
     }
