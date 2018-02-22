@@ -175,6 +175,12 @@ public class Protractor: UIControl {
         }
     }
 
+    public var shouldDrawValueLabel: Bool = false {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     public var linesStep = CGFloat(10.degreesToRadians) {
         didSet {
             setNeedsDisplay()
@@ -331,6 +337,27 @@ public class Protractor: UIControl {
         UIBezierPath(rect: CGRect(x: 0, y: 0, width: bounds.width, height: 2)).fill()
     }
 
+    fileprivate func drawValueLabel() {
+        let textRectSize = CGSize(width: 60, height: 20)
+        let textRect = CGRect(
+            x: arcCenter.x - textRectSize.width/2,
+            y: arcCenter.y - textRectSize.height/2,
+            width: textRectSize.width,
+            height: textRectSize.height)
+        let rect = UIBezierPath(rect: textRect)
+        rect.stroke()
+        rect.fill()
+
+        let text = "\(value)°"
+        let p = NSMutableParagraphStyle()
+        p.alignment = .center
+        let attrText = NSAttributedString(string: text,
+                                          attributes: [.font: font.withSize(17),
+                                                       .paragraphStyle: p
+            ])
+        attrText.draw(in: textRect)
+    }
+
     public override func draw(_ rect: CGRect) {
         UIColor(red: 169/255, green: 177/255, blue: 186/255, alpha: 1.0).setStroke()
 
@@ -345,6 +372,12 @@ public class Protractor: UIControl {
         if shouldDrawSeparatorLine {
             UIColor(red: 180/255, green: 188/255, blue: 199/255, alpha: 1).set()
             drawSeparatorLine()
+        }
+
+        if shouldDrawValueLabel {
+            backgroundColor?.setFill()
+            UIColor(red: 169/255, green: 177/255, blue: 186/255, alpha: 1.0).setStroke()
+            drawValueLabel()
         }
     }
 

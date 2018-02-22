@@ -22,6 +22,7 @@ class ViewController: UIViewController {
                                                   width: UIScreen.main.bounds.width,
                                                   height: 220))
 
+        protractor.shouldDrawValueLabel = true
         protractor.addTarget(self, action: #selector(ViewController.protractorValueChanged(_:)), for: .valueChanged)
         return protractor
     }()
