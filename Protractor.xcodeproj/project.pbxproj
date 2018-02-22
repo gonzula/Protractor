@@ -68,6 +68,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9F0CA4FA203F46DD007B407B /* Protractor.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = Protractor.podspec; sourceTree = "<group>"; };
 		9F1FCE6E203B65F600D4713A /* Protractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Protractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1FCE71203B65F600D4713A /* Protractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protractor.h; sourceTree = "<group>"; };
 		9F1FCE72203B65F600D4713A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		9F1FCE64203B65F600D4713A = {
 			isa = PBXGroup;
 			children = (
+				9F0CA4FA203F46DD007B407B /* Protractor.podspec */,
 				9F1FCE70203B65F600D4713A /* Protractor */,
 				9F1FCE7B203B65F600D4713A /* ProtractorTests */,
 				9FB07423203F07BA007CAC0B /* ProtractorExperiments */,

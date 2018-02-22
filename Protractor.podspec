@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Protractor"
-  s.version      = "1.0.2"
+  s.version      = "1.1.0"
   s.summary      = "A UIControl to select angles"
 
   s.description  = <<-DESC
