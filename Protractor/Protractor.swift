@@ -62,7 +62,7 @@ public class Protractor: UIControl {
         }
     }
 
-    private var possibleValues = [Double]()
+    private var possibleValues: StrideThrough<Double>!
 
     private var radAngleRange: ClosedRange<CGFloat> {
         let lowerBound = angleRange.lowerBound - 180
@@ -215,18 +215,12 @@ public class Protractor: UIControl {
     }
 
     fileprivate func calculatePossibleValues() {
-        possibleValues = Array(stride(from: angleRange.lowerBound, through: angleRange.upperBound, by: stepValue))
+        possibleValues = stride(from: angleRange.lowerBound, through: angleRange.upperBound, by: stepValue)
     }
 
     private func updatePlusMinusButtons() {
-        guard !possibleValues.isEmpty else {
-            minusButton.isEnabled = false
-            plusButton.isEnabled = false
-            return
-        }
-
-        minusButton.isEnabled = value != possibleValues.min()!
-        plusButton.isEnabled = value != possibleValues.max()!
+        minusButton.isEnabled = value != possibleValues?.min()
+        plusButton.isEnabled = value != possibleValues?.max()
     }
 
     // MARK: - Draw
