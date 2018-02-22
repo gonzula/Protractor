@@ -342,8 +342,8 @@ public class Protractor: UIControl {
         tintColor.set()
         drawNeedle()
 
-        UIColor(red: 180/255, green: 188/255, blue: 199/255, alpha: 1).set()
         if shouldDrawSeparatorLine {
+            UIColor(red: 180/255, green: 188/255, blue: 199/255, alpha: 1).set()
             drawSeparatorLine()
         }
     }
