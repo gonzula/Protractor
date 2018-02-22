@@ -340,8 +340,8 @@ public class Protractor: UIControl {
             width: textRectSize.width,
             height: textRectSize.height)
         let rect = UIBezierPath(rect: textRect)
-        rect.stroke()
         rect.fill()
+        rect.stroke()
 
         let text = "\(value)°"
         let p = NSMutableParagraphStyle()
