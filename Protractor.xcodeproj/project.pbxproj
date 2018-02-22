@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9F0CA4F6203F3B2C007B407B /* Protractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1FCE6E203B65F600D4713A /* Protractor.framework */; };
+		9F0CA4F8203F3B30007B407B /* Protractor.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1FCE6E203B65F600D4713A /* Protractor.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9F1FCE78203B65F600D4713A /* Protractor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F1FCE6E203B65F600D4713A /* Protractor.framework */; };
 		9F1FCE7D203B65F600D4713A /* ProtractorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1FCE7C203B65F600D4713A /* ProtractorTests.swift */; };
 		9F1FCE7F203B65F600D4713A /* Protractor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9F1FCE71203B65F600D4713A /* Protractor.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +53,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9F0CA4F9203F3B30007B407B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9F0CA4F8203F3B30007B407B /* Protractor.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		9F1FCE6E203B65F600D4713A /* Protractor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Protractor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F1FCE71203B65F600D4713A /* Protractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Protractor.h; sourceTree = "<group>"; };
@@ -94,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F0CA4F6203F3B2C007B407B /* Protractor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +131,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9F0CA4F5203F3B2C007B407B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9F1FCE64203B65F600D4713A = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +147,7 @@
 				9FB07438203F07BA007CAC0B /* ProtractorExperimentsTests */,
 				9FB07443203F07BB007CAC0B /* ProtractorExperimentsUITests */,
 				9F1FCE6F203B65F600D4713A /* Products */,
+				9F0CA4F5203F3B2C007B407B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,6 +270,7 @@
 				9FB0741E203F07BA007CAC0B /* Sources */,
 				9FB0741F203F07BA007CAC0B /* Frameworks */,
 				9FB07420203F07BA007CAC0B /* Resources */,
+				9F0CA4F9203F3B30007B407B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -670,6 +696,7 @@
 		9FB07447203F07BB007CAC0B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6K8GZF4U9;
@@ -685,6 +712,7 @@
 		9FB07448203F07BB007CAC0B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = R6K8GZF4U9;
