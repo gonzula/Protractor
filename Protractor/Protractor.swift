@@ -241,10 +241,10 @@ public class Protractor: UIControl {
         arc.lineWidth = 1
         arc.stroke()
 
-        drawLines(angles: [radAngleRange.lowerBound, radAngleRange.upperBound])
+        drawAngleLines(angles: [radAngleRange.lowerBound, radAngleRange.upperBound])
     }
 
-    fileprivate func drawLines(angles: [CGFloat]? = nil) {
+    fileprivate func drawAngleLines(angles: [CGFloat]? = nil) {
         let ctx = UIGraphicsGetCurrentContext()!
         ctx.saveGState()
         ctx.translateBy(x: arcCenter.x, y: arcCenter.y)
@@ -361,7 +361,7 @@ public class Protractor: UIControl {
         UIColor(red: 169/255, green: 177/255, blue: 186/255, alpha: 1.0).setStroke()
 
         drawArc()
-        drawLines()
+        drawAngleLines()
         if shouldDrawQuarterAngles {
             drawQuarterAngles()
         }
