@@ -131,6 +131,12 @@ public class Protractor: UIControl {
         return min(bounds.width / 2, bounds.height) * 0.9
     }
 
+    public var shouldDrawQuarterAngles: Bool = true {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+
     public var shouldDrawSeparatorLine: Bool = true {
         didSet {
             setNeedsDisplay()
@@ -356,7 +362,9 @@ public class Protractor: UIControl {
 
         drawArc()
         drawLines()
-        drawQuarterAngles()
+        if shouldDrawQuarterAngles {
+            drawQuarterAngles()
+        }
         drawAnglesText()
         
         tintColor.set()
