@@ -293,9 +293,9 @@ public class Protractor: UIControl {
             let degAngle = 180 + Int(round(angle.radiansToDegrees))
             let text = "\(degAngle)°"
             let fontSize: CGFloat = 13
-            let attrText = NSAttributedString(string: text, attributes: [NSAttributedStringKey.font : font.withSize(fontSize)])
+            let attrText = NSAttributedString(string: text, attributes: [NSAttributedString.Key.font : font.withSize(fontSize)])
 
-            let width = NSAttributedString(string: "\(degAngle)", attributes: [NSAttributedStringKey.font : font.withSize(fontSize)]).size().width
+            let width = NSAttributedString(string: "\(degAngle)", attributes: [NSAttributedString.Key.font : font.withSize(fontSize)]).size().width
             ctx.saveGState()
             ctx.translateBy(x: radius * 1.1 * cos(angle), y: radius * 1.1 * sin(angle))
             ctx.rotate(by: angle + CGFloat.pi/2)
