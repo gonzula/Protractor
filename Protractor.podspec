@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
   s.name         = "Protractor"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "A UIControl to select angles"
 
   s.description  = <<-DESC
@@ -23,6 +23,6 @@ Pod::Spec.new do |s|
 
   s.source_files = "Protractor", "Protractor/**/*.{swift}"
 
-  s.pod_target_xcconfig = {'SWIFT_VERSION' => '4'}
+  s.pod_target_xcconfig = {'SWIFT_VERSION' => '4.2'}
 
 end
